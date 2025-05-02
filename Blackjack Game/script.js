@@ -7,7 +7,7 @@ let extraCard = 0;
 let newGameInd = 0;
 let randomCard = 0;
 
-// Create object
+// Create object - key value pairs
 let player = {
   name: "Adri",
   chips: 145,
@@ -54,10 +54,12 @@ function outputCheck() {
     message = "You got BlackJack";
     newCardId.textContent = "No More Cards";
     messageId.textContent = "Start New Game";
+    player.chips += 100;
   } else {
     message = "You are out of the game";
     newCardId.textContent = "No More Cards";
     messageId.textContent = "Start New Game";
+    player.chips = player.chips - 100;
   }
   messageId.textContent = message;
 }

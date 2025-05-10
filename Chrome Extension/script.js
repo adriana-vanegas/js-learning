@@ -11,7 +11,6 @@ saveBtn.addEventListener("click", function () {
   if (leadInput.checkValidity()) {
     let leadInputValue = leadInput.value;
     leadArray.push(leadInputValue);
-
     console.log(leadArray);
     renderLeads();
     leadInput.value = "";
@@ -32,6 +31,7 @@ saveBtn.addEventListener("click", function () {
 // });
 
 // DOM manipulation has a cost, so reduce iteration on the DOM
+
 // function renderLeads() {
 //   listLinks = "";
 //   for (let i = 0; i < leadArray.length; i++) {
@@ -41,7 +41,12 @@ saveBtn.addEventListener("click", function () {
 // }
 
 function renderLeads() {
-  listLinks += "<li>" + leadInput.value + "</li>";
+  listLinks +=
+    '<li><a target="_blank" href="' +
+    leadInput.value +
+    '"</a>' +
+    leadInput.value +
+    "</li>";
   console.log(listLinks);
   output.innerHTML = listLinks;
 }

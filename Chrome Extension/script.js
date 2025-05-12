@@ -2,20 +2,37 @@ const saveBtn = document.getElementById("save-btn");
 const showBtn = document.getElementById("output-links");
 const leadInput = document.getElementById("input");
 const output = document.getElementById("outputLinks");
-let leadArray = [];
 let listLinks = "";
 
-// when the button is clicked, a function will run
-// function specified within curly brackets
+let existingLeads = localStorage.getItem("myLeads");
+let jsLeads = [];
+
 saveBtn.addEventListener("click", function () {
   if (leadInput.checkValidity()) {
-    let leadInputValue = leadInput.value;
-    leadArray.push(leadInputValue);
-    console.log(leadArray);
+    if (existingLeads) {
+      // if there are existing leads, have it start with the existing leads
+      jsLeads = JSON.parse(existingLeads);
+    }
+
+    jsLeads.push(leadInput.value); // add the most recent input value to the list
+    localStorage.setItem("myLeads", JSON.stringify(jsLeads)); // set the list into a string and upload it to local storage
+    existingLeads = localStorage.getItem("myLeads"); // update the existing leads as a string
     renderLeads();
-    leadInput.value = "";
+    leadInput.value = ""; // null out the value so it can store the next one
   } else leadInput.reportValidity();
 });
+
+function renderLeads() {
+  listLinks = "";
+  for (i = 0; i < jsLeads.length; i++) {
+    listLinks += `
+    <li>
+      <a target="_blank" href="${jsLeads[i]}">
+      ${jsLeads[i]}</a>
+    </li>`;
+  }
+  output.innerHTML = listLinks;
+}
 
 // Another way to do it with create element
 // showBtn.addEventListener("click", function () {
@@ -39,14 +56,3 @@ saveBtn.addEventListener("click", function () {
 //   }
 //   output.innerHTML = listLinks;
 // }
-
-function renderLeads() {
-  listLinks +=
-    '<li><a target="_blank" href="' +
-    leadInput.value +
-    '"</a>' +
-    leadInput.value +
-    "</li>";
-  console.log(listLinks);
-  output.innerHTML = listLinks;
-}

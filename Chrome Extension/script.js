@@ -2,24 +2,21 @@ const saveBtn = document.getElementById("save-btn");
 const leadInput = document.getElementById("input");
 const output = document.getElementById("outputLinks");
 const deleteBtn = document.getElementById("delete-btn");
+const tabBtn = document.getElementById("tab-btn");
 let listLinks = "";
 
 let existingLeads = localStorage.getItem("myLeads");
 let jsLeads = [];
 
-saveBtn.addEventListener("click", function () {
-  if (leadInput.checkValidity()) {
-    if (existingLeads) {
-      // if there are existing leads, have it start with the existing leads
-      jsLeads = JSON.parse(existingLeads);
-    }
-    jsLeads.push(leadInput.value); // add the most recent input value to the list
-    localStorage.setItem("myLeads", JSON.stringify(jsLeads)); // set the list into a string and upload it to local storage
-    existingLeads = localStorage.getItem("myLeads"); // update the existing leads as a string
-    render(jsLeads);
-    leadInput.value = ""; // null out the value so it can store the next one
-  } else leadInput.reportValidity();
-});
+function addLead(input) {
+  if (existingLeads) {
+    // if there are existing leads, have it start with the existing leads
+    jsLeads = JSON.parse(existingLeads);
+  }
+  jsLeads.push(input); // add the most recent input value to the list
+  localStorage.setItem("myLeads", JSON.stringify(jsLeads)); // set the list into a string and upload it to local storage
+  existingLeads = localStorage.getItem("myLeads"); // update the existing leads as a string
+}
 
 function render(leads) {
   listLinks = "";
@@ -33,10 +30,25 @@ function render(leads) {
   output.innerHTML = listLinks;
 }
 
+saveBtn.addEventListener("click", function () {
+  if (leadInput.checkValidity()) {
+    addLead(leadInput.value);
+    render(jsLeads);
+  } else leadInput.reportValidity();
+  leadInput.value = ""; // null out the value so it can store the next one
+});
+
 deleteBtn.addEventListener("dblclick", function () {
   localStorage.clear();
   existingLeads = "";
   jsLeads = [];
+  render(jsLeads);
+});
+
+const tabs = [{ url: "https://www.linkedin.com/feed/" }];
+
+tabBtn.addEventListener("click", function () {
+  addLead(tabs[0].url);
   render(jsLeads);
 });
 

@@ -45,11 +45,15 @@ deleteBtn.addEventListener("dblclick", function () {
   render(jsLeads);
 });
 
-const tabs = [{ url: "https://www.linkedin.com/feed/" }];
+// APIs return information in this format:
+// const tabs = [{ url: "https://www.linkedin.com/feed/" }];
 
 tabBtn.addEventListener("click", function () {
-  addLead(tabs[0].url);
-  render(jsLeads);
+  // Grab url of the current tab
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    addLead(tabs[0].url);
+    render(jsLeads);
+  });
 });
 
 // Another way to do it with create element

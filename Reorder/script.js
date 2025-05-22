@@ -1,8 +1,8 @@
 const folderSortFunc = document.getElementById("folderSort");
 let stored = [
-  `<div id="Meeting Notes" class="folders">Meeting Notes</div>`,
-  `<div id="Performance Review" class="folders">Performance Review</div>`,
-  `<div id="Month End Close" class="folders">Month End Close</div>`,
+  `<div id="Meeting Notes" class="folders">Meeting Notes<div class="handle">H</div></div>`,
+  `<div id="Performance Review" class="folders">Performance Review<div class="handle">H</div></div>`,
+  `<div id="Month End Close" class="folders">Month End Close<div class="handle">H</div></div>`,
 ];
 let string = "";
 
@@ -18,12 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
   folderSortFunc.innerHTML = string;
   new Sortable(folderSortFunc, {
     animation: 150,
+    handle: ".handle",
     onEnd: function () {
       const newOrder = [];
       const items = folderSortFunc.querySelectorAll(".folders");
       items.forEach((element) =>
         newOrder.push(
-          `<div id="${element.id}" class="folders">${element.id}</div>`
+          `<div id="${element.id}" class="folders">${element.id}<div class="handle">H</div></div>`
         )
       );
       localStorage.setItem("folder", JSON.stringify(newOrder));

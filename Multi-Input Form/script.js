@@ -32,5 +32,5 @@ dataTest = [
   },
 ];
 console.log(dataTest);
-dataTest.splice(1, 2);
-console.log(dataTest);
+dataTest.splice(2);
+// console.log(dataTest);

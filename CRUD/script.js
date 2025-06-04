@@ -1,5 +1,9 @@
 const tableData = document.querySelector(".data-table");
 
+////////////////////////
+// Render all emails //
+////////////////////////
+
 function render() {
   let data = [];
   let object = localStorage.getItem("object");
@@ -13,18 +17,22 @@ function render() {
 
   let elements = "";
 
-  data.forEach(function (record, index) {
+  data.forEach(function (record) {
     elements += `<tr>
       <td>${record.name}</td>
       <td>${record.email}</td>
       <td>
-        <button class="edit-btn" data-index= "${index}">Edit</button>
-        <button class="delete-btn" data-index= "${index}">Delete</button>
+        <button class="edit-btn" data-id= "${record.id}">Edit</button>
+        <button class="delete-btn" data-id= "${record.id}">Delete</button>
       </td>
       </tr>`;
   });
   tableData.innerHTML = elements;
 }
+
+//////////////////////////////
+// Add button functionality //
+//////////////////////////////
 
 const addBtn = document.querySelector(".add-btn");
 const createForm = document.querySelector(".create-form");
@@ -34,6 +42,10 @@ addBtn.addEventListener("click", function () {
   addBtn.style.display = "none";
 });
 
+///////////////////////
+// Create new Entry //
+///////////////////////
+
 const inputEntry = document.querySelector(".input-entry");
 let newObject = "";
 
@@ -42,7 +54,11 @@ inputEntry.addEventListener("click", function () {
   const name = document.querySelector(".name-entry").value;
   const email = document.querySelector(".email-entry").value;
 
-  newObject = { name: name, email: email };
+  newObject = {
+    id: Date.now(), // unique identifier
+    name: name,
+    email: email,
+  };
 
   objectData = JSON.parse(localStorage.getItem("object"));
 
@@ -61,10 +77,16 @@ inputEntry.addEventListener("click", function () {
   addBtn.style.display = "block";
 });
 
+//////////////////////////
+// Update functionality //
+//////////////////////////
+
 const nameToUpdate = document.querySelector(".name-update");
 const emailToUpdate = document.querySelector(".email-update");
-// const
+const editButton = document.querySelectorAll(".edit-btn");
+
+editButton.forEach(function (btn) {
+  btn.addEventListener("click", function () {});
+});
 
 render();
-
-console.log(Date.now());

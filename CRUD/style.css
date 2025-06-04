@@ -3,10 +3,10 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.container {
+body {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: 50vh;
 }
 
 .form-container {

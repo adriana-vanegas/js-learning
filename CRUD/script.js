@@ -51,14 +51,10 @@ let newObject = "";
 
 inputEntry.addEventListener("click", function () {
   let data = [];
+  let nameInput = document.querySelector(".name-entry");
+  let emailInput = document.querySelector(".email-entry");
   const name = document.querySelector(".name-entry").value;
   const email = document.querySelector(".email-entry").value;
-
-  newObject = {
-    id: Date.now(), // unique identifier
-    name: name,
-    email: email,
-  };
 
   objectData = JSON.parse(localStorage.getItem("object"));
 
@@ -68,13 +64,24 @@ inputEntry.addEventListener("click", function () {
     });
   }
 
-  data.push(newObject);
+  newObject = {
+    id: Date.now(), // unique identifier
+    name: name,
+    email: email,
+  };
 
-  localStorage.setItem("object", JSON.stringify(data));
+  const checkIncludes = data.find((i) => i.email === newObject.email);
 
-  render();
-  createForm.style.display = "none";
-  addBtn.style.display = "block";
+  if (checkIncludes) {
+    console.log("No duplicate emails");
+  } else {
+    data.push(newObject);
+    localStorage.setItem("object", JSON.stringify(data));
+
+    render();
+    createForm.style.display = "none";
+    addBtn.style.display = "block";
+  }
 });
 
 //////////////////////////
@@ -90,3 +97,14 @@ editButton.forEach(function (btn) {
 });
 
 render();
+
+const list = [
+  { name: "Adri", job: "analyst" },
+  { name: "Fabi", job: "marketing" },
+];
+
+const check = { name: "Fer", job: "product" };
+
+const output = list.find((i) => i.name === check.name || i.job === check.job);
+
+console.log(output);

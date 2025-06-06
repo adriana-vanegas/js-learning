@@ -72,6 +72,7 @@ inputEntry.addEventListener("click", function () {
   };
 
   const checkIncludes = data.find((i) => i.email === newObject.email);
+  console.log(checkIncludes);
 
   if (checkIncludes) {
     console.log("No duplicate emails");
@@ -83,6 +84,8 @@ inputEntry.addEventListener("click", function () {
     createForm.style.display = "none";
     addBtn.style.display = "block";
   }
+  nameInput.value = "";
+  emailInput.value = "";
 });
 
 render();
@@ -90,6 +93,8 @@ render();
 //////////////////////////
 // Button functionality //
 //////////////////////////
+
+let idToEdit = null;
 
 tableData.addEventListener("click", function (event) {
   const clickedButton = event.target.closest("button");
@@ -105,25 +110,6 @@ tableData.addEventListener("click", function (event) {
       editID(id);
     }
   }
-});
-
-updateButton.addEventListener("click", function () {
-  updatedName = nameUpdate.value;
-  updatedEmail = emailUpdate.value;
-  const objectData = JSON.parse(localStorage.getItem("object"));
-
-  const modified = objectData.map((object) => {
-    if (object.id === Number(identifier)) {
-      return { ...object, name: updatedName, email: updatedEmail };
-    }
-    return object;
-  });
-  console.log(modified);
-  localStorage.setItem("object", JSON.stringify(modified));
-  console.log(JSON.parse(localStorage.getItem("object")));
-  updateForm.style.display = "none";
-  addBtn.style.display = "block";
-  render();
 });
 
 function deleteId(identifier) {
@@ -142,6 +128,25 @@ function editID(identifier) {
     (object) => Number(object.id) === Number(identifier)
   );
 
+  idToEdit = selectedData.id;
   nameUpdate.value = selectedData.name;
   emailUpdate.value = selectedData.email;
 }
+
+updateButton.addEventListener("click", function () {
+  updatedName = nameUpdate.value;
+  updatedEmail = emailUpdate.value;
+  const objectData = JSON.parse(localStorage.getItem("object"));
+
+  const modified = objectData.map((object) => {
+    if (object.id === Number(idToEdit)) {
+      return { ...object, name: updatedName, email: updatedEmail };
+    }
+    return object;
+  });
+
+  localStorage.setItem("object", JSON.stringify(modified));
+  updateForm.style.display = "none";
+  addBtn.style.display = "block";
+  render();
+});

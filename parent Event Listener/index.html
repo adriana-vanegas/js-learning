@@ -6,27 +6,50 @@
     <title>Document</title>
     <style>
       body {
-        display: flex;
+        display: block;
         justify-content: center;
       }
-      .container {
-        width: 100px;
-        height: 100px;
+      .container-button,
+      .container-inner-button {
+        width: 200px;
+        height: 200px;
         padding: 10px;
         text-align: center;
         align-content: center;
         background-color: rgb(217, 246, 246);
+        margin-bottom: 10px;
       }
       .student {
         background-color: rgb(174, 213, 213);
+        padding: 10px;
         margin-bottom: 10px;
         border-radius: 10px;
+        cursor: pointer;
+      }
+      .assignment {
+        background-color: rgb(174, 213, 213);
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        cursor: default;
+      }
+
+      .assign-btn {
+        background-color: rgb(174, 213, 213);
+        border: none;
+        color: rgb(80, 114, 114);
+      }
+
+      .assign-btn:hover {
+        font-weight: 600;
         cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container-button"></div>
+
+    <div class="container-inner-button"></div>
     <script src="script.js"></script>
   </body>
 </html>

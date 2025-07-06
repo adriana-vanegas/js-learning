@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .resultsWrapper {
+        padding: 10px;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+    </style>
+    <script type="module">
+      import {
+        Picker,
+        Database,
+      } from "https://esm.sh/emoji-picker-element@1.18.2";
+
+      const picker = new Picker({
+        locale: "en",
+        customEmoji: [
+          {
+            name: "Asana",
+            shortcodes: ["Asana.svg"],
+            url: "icons/Asana.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Atlassian",
+            shortcodes: ["Atlassian.svg"],
+            url: "icons/Atlassian.svg",
+            category: "Productivity",
+          },
+          {
+            name: "AWS",
+            shortcodes: ["AWS.svg"],
+            url: "icons/AWS.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Azure",
+            shortcodes: ["Azure.svg"],
+            url: "icons/Azure.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Google Calendar",
+            shortcodes: ["Calendar.svg"],
+            url: "icons/Calendar.svg",
+            category: "Google",
+          },
+          {
+            name: "Canva",
+            shortcodes: ["Canva.svg"],
+            url: "icons/Canva.svg",
+            category: "Media",
+          },
+          {
+            name: "Clickhouse",
+            shortcodes: ["Clickhouse.svg"],
+            url: "icons/Clickhouse.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Clickup",
+            shortcodes: ["Clickup.svg"],
+            url: "icons/Clickup.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Cloudzero",
+            shortcodes: ["Cloudzero.svg"],
+            url: "icons/Cloudzero.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Coda",
+            shortcodes: ["Coda.svg"],
+            url: "icons/Coda.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Computer",
+            shortcodes: ["Computer.svg"],
+            url: "icons/Computer.svg",
+            category: "Core",
+          },
+          {
+            name: "Data",
+            shortcodes: ["Data.svg"],
+            url: "icons/Data.svg",
+            category: "Core",
+          },
+          {
+            name: "Database",
+            shortcodes: ["Database.svg"],
+            url: "icons/Database.svg",
+            category: "Core",
+          },
+          {
+            name: "Databricks",
+            shortcodes: ["Databricks.svg"],
+            url: "icons/Databricks.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Datadog",
+            shortcodes: ["Datadog.svg"],
+            url: "icons/Datadog.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "dbt",
+            shortcodes: ["dbt.svg"],
+            url: "icons/dbt.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Drive",
+            shortcodes: ["Drive.svg"],
+            url: "icons/Drive.svg",
+            category: "Google",
+          },
+          {
+            name: "Facebook",
+            shortcodes: ["Facebook.svg"],
+            url: "icons/Facebook.svg",
+            category: "Media",
+          },
+          {
+            name: "Figma",
+            shortcodes: ["Figma.svg"],
+            url: "icons/Figma.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Github",
+            shortcodes: ["Github.svg"],
+            url: "icons/Github.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Gong",
+            shortcodes: ["Gong.svg"],
+            url: "icons/Gong.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Google Cloud",
+            shortcodes: ["Google Cloud.svg"],
+            url: "icons/Google Cloud.svg",
+            category: "Google",
+          },
+          {
+            name: "Google Doc",
+            shortcodes: ["Google Doc.svg"],
+            url: "icons/Google Doc.svg",
+            category: "Google",
+          },
+          {
+            name: "Google Sheets",
+            shortcodes: ["Google Sheets.svg"],
+            url: "icons/Google Sheets.svg",
+            category: "Google",
+          },
+          {
+            name: "Google Slides",
+            shortcodes: ["Google Slides.svg"],
+            url: "icons/Google Slides.svg",
+            category: "Google",
+          },
+          {
+            name: "Google",
+            shortcodes: ["Google.svg"],
+            url: "icons/Google.svg",
+            category: "Google",
+          },
+          {
+            name: "Greenhouse",
+            shortcodes: ["Greenhouse.svg"],
+            url: "icons/Greenhouse.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Gusto",
+            shortcodes: ["Gusto.svg"],
+            url: "icons/Gusto.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Handshake",
+            shortcodes: ["Handshake.svg"],
+            url: "icons/Handshake.svg",
+            category: "Core",
+          },
+          {
+            name: "Heart",
+            shortcodes: ["Heart.svg"],
+            url: "icons/Heart.svg",
+            category: "Core",
+          },
+          {
+            name: "Hubspot",
+            shortcodes: ["Hubspot.svg"],
+            url: "icons/Hubspot.svg",
+            category: "Media",
+          },
+          {
+            name: "Instagram",
+            shortcodes: ["Instagram.svg"],
+            url: "icons/Instagram.svg",
+            category: "Media",
+          },
+          {
+            name: "Jira",
+            shortcodes: ["Jira.svg"],
+            url: "icons/Jira.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "LinkedIn",
+            shortcodes: ["LinkedIn.svg"],
+            url: "icons/LinkedIn.svg",
+            category: "Media",
+          },
+          {
+            name: "Looker",
+            shortcodes: ["Looker.svg"],
+            url: "icons/Looker.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Loom",
+            shortcodes: ["Loom.svg"],
+            url: "icons/Loom.svg",
+            category: "Productivity",
+          },
+          {
+            name: "TinyLink Mail",
+            shortcodes: ["Mail.svg"],
+            url: "icons/Mail.svg",
+            category: "Core",
+          },
+          {
+            name: "Monday",
+            shortcodes: ["Monday.svg"],
+            url: "icons/Monday.svg",
+            category: "Productivity",
+          },
+          {
+            name: "TinyLink Money",
+            shortcodes: ["Money.svg"],
+            url: "icons/Money.svg",
+            category: "Core",
+          },
+          {
+            name: "Netsuite",
+            shortcodes: ["Netsuite.svg"],
+            url: "icons/Netsuite.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Notion",
+            shortcodes: ["Notion.svg"],
+            url: "icons/Notion.svg",
+            category: "Productivity",
+          },
+          {
+            name: "OpenAI",
+            shortcodes: ["OpenAI.svg"],
+            url: "icons/OpenAI.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Oracle",
+            shortcodes: ["Oracle.svg"],
+            url: "icons/Oracle.svg",
+            category: "Productivity",
+          },
+          {
+            name: "TinyLink Phone",
+            shortcodes: ["Phone.svg"],
+            url: "icons/Phone.svg",
+            category: "Core",
+          },
+          {
+            name: "Pipedrive",
+            shortcodes: ["Pipedrive.svg"],
+            url: "icons/Pipedrive.svg",
+            category: "Productivity",
+          },
+
+          {
+            name: "Rocketship",
+            shortcodes: ["Rocketship.svg"],
+            url: "icons/Rocketship.svg",
+            category: "Core",
+          },
+          {
+            name: "Salesforce",
+            shortcodes: ["Salesforce.svg"],
+            url: "icons/Salesforce.svg",
+            category: "Productivity",
+          },
+
+          {
+            name: "Sketch",
+            shortcodes: ["Sketch.svg"],
+            url: "icons/Sketch.svg",
+            category: "Core",
+          },
+
+          {
+            name: "Snowflake",
+            shortcodes: ["Snowflake.svg"],
+            url: "icons/Snowflake.svg",
+            category: "Data & Cloud",
+          },
+
+          {
+            name: "Splunk",
+            shortcodes: ["Splunk.svg"],
+            url: "icons/Splunk.svg",
+            category: "Data & Cloud",
+          },
+
+          {
+            name: "Stripe",
+            shortcodes: ["Stripe.svg"],
+            url: "icons/Stripe.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Tableau",
+            shortcodes: ["Tableau.svg"],
+            url: "icons/Tableau.svg",
+            category: "Data & Cloud",
+          },
+          {
+            name: "Team",
+            shortcodes: ["Team.svg"],
+            url: "icons/Team.svg",
+            category: "Core",
+          },
+          {
+            name: "Thinking",
+            shortcodes: ["Thinking.svg"],
+            url: "icons/Thinking.svg",
+            category: "Core",
+          },
+          {
+            name: "TikTok",
+            shortcodes: ["TikTok.svg"],
+            url: "icons/TikTok.svg",
+            category: "Media",
+          },
+          {
+            name: "Trello",
+            shortcodes: ["Trello.svg"],
+            url: "icons/Trello.svg",
+            category: "Productivity",
+          },
+          {
+            name: "User",
+            shortcodes: ["User.svg"],
+            url: "icons/User.svg",
+            category: "Core",
+          },
+          {
+            name: "Wordpress",
+            shortcodes: ["Wordpress.svg"],
+            url: "icons/Wordpress.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Workday",
+            shortcodes: ["Workday.svg"],
+            url: "icons/Workday.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Zendesk",
+            shortcodes: ["Zendesk.svg"],
+            url: "icons/Zendesk.svg",
+            category: "Productivity",
+          },
+          {
+            name: "Zoom",
+            shortcodes: ["Zoom.svg"],
+            url: "icons/Zoom.svg",
+            category: "Productivity",
+          },
+        ],
+      });
+
+      document.body.appendChild(picker);
+
+      picker.addEventListener("emoji-click", (event) => {
+        console.log(event); // will log something like the above
+        results.innerHTML = results.innerHTML + event.detail.emoji.unicode;
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Emoji Picker</h1>
+    <div class="resultsWrapper">
+      Clicked emojis: <span id="results"> </span>
+    </div>
+  </body>
+</html>

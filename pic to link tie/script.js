@@ -51,7 +51,7 @@ const pictures = [
   { name: "Zoom", pic: "Zoom.svg", url: "zoom.us" },
 ];
 
-const testURL = "https://chatgpt.com/c/686f33c5-6ee8-8011-95c7-f41c01586a23";
+const testURL = "asana.com";
 
 const div = document.querySelector(".image");
 

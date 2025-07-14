@@ -1,3 +1,17 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  databaseURL: "https://linkboard-e3cbb-default-rtdb.firebaseio.com/",
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+console.log(database);
+
 const saveBtn = document.getElementById("save-btn");
 const leadInput = document.getElementById("input");
 const output = document.getElementById("outputLinks");

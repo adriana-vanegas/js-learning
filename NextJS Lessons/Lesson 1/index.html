@@ -12,15 +12,29 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
       const app = document.getElementById("app");
-      function Header() {
-        return <h1>Phew!</h1>;
+      function Header(props) {
+        return <h1>{props.title ? props.title : "Hello!"}</h1>;
       }
 
       function HomePage() {
+        const names = ["Adri", "Mami", "Paco"];
+        const [like, setLikes] = React.useState(0);
+
+        function handleClick() {
+          console.log("increment like count");
+          setLikes(like + 1);
+        }
+
         return (
           <div>
+            <Header title="Hey" />
             <Header />
-            <Header />
+            <ul>
+              {names.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+            <button onClick={handleClick}>Like ({like})</button>
           </div>
         );
       }

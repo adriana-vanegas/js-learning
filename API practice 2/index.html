@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .fun {
+        background-color: rgb(255, 255, 184);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>I'm bored. What should I do?</h1>
+    </div>
+    <div class="idea-generator">
+      <div class="output" aria-live="polite">Find something to do!</div>
+      <button class="idea-button" aria-label="Generate an idea">
+        Give me an idea
+      </button>
+    </div>
+
+    <script>
+      const idea = document.querySelector(".output");
+      const body = document.querySelector("body");
+      const button = document.querySelector(".idea-button");
+
+      button.addEventListener("click", function () {
+        fetch("https://apis.scrimba.com/bored/api/activity")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Error: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Received JSON data:", data);
+            body.classList.add("fun");
+            idea.innerHTML = data.activity;
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          });
+      });
+    </script>
+  </body>
+</html>

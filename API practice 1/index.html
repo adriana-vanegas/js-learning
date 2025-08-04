@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="output"></div>
+    <script>
+      const dog = document.querySelector(".output");
+
+      fetch("https://dog.ceo/api/breeds/image/random")
+        // First step check if the response works
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+
+        // Second step - output the JSON data
+        .then((jsonData) => {
+          console.log("Received JSON data:", jsonData.message);
+          dog.innerHTML = `<img src="${jsonData.message}" min-width = "300px">`;
+          // You can now access properties like jsonData.name or iterate through jsonData if it's an array.
+        })
+        // Third step - error catch
+
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+    </script>
+  </body>
+</html>

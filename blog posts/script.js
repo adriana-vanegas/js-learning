@@ -22,12 +22,22 @@ fetch("https://apis.scrimba.com/jsonplaceholder/posts")
     // console.log(first5);
   });
 
-const blogForm = document.getElementById("blog-submit");
+// It has to be the form, not the button
+const blogForm = document.getElementById("blog");
 
-blogForm.addEventListener("click", function (e) {
+blogForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const titleInput = document.getElementById("title-input");
-  const bodyInput = document.getElementById("body-input");
-  console.log(titleInput.value);
-  console.log(bodyInput.value);
+
+  const titleInput = document.getElementById("title-input").value;
+  const bodyInput = document.getElementById("body-input").value;
+
+  const input = { title: titleInput, body: bodyInput };
+
+  fetch("https://apis.scrimba.com/jsonplaceholder/posts", {
+    method: "Post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(input),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 });

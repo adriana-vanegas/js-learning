@@ -1,0 +1,39 @@
+body {
+  margin: 0px;
+  font-family: "Inter", sans-serif;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: beige;
+  padding: 0px 20px;
+  height: 10vh;
+  max-width: 100%;
+}
+
+li {
+  display: inline;
+  padding-left: 2vh;
+}
+
+.post-section {
+  padding: 1vh 6vh;
+}
+
+form {
+  display: grid;
+  padding: 1vh 6vh;
+  margin: 10px 0px;
+  background-color: lightblue;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input,
+textarea {
+  margin-bottom: 20px;
+}

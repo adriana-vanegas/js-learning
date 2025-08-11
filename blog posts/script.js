@@ -1,25 +1,26 @@
-fetch("https://apis.scrimba.com/jsonplaceholder/posts")
-  .then((response) => response.json())
-  .then((data) => {
-    let html = "";
-    const postSection = document.querySelector(".post-section");
+const postSection = document.querySelector(".post-section");
 
-    let posts = data;
-    let first5 = posts.slice(0, 5);
+let postsArray = [];
 
-    first5.forEach(
-      (item) =>
-        (html += `<div class="post" data-id = ${item.id}>
+function renderPosts(array) {
+  let html = "";
+  array.forEach(
+    (item) =>
+      (html += `<div class="post" data-id = ${item.id}>
                <h2>${item.title}</h2>
                <p>${item.userId}</p>
                <p>${item.body}</p>
                </div>`)
-    );
+  );
+  postSection.innerHTML = html;
+}
 
-    postSection.innerHTML = html;
-    // console.log(html);
-
-    // console.log(first5);
+fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+  .then((response) => response.json())
+  .then((data) => {
+    postsArray = data.slice(0, 5);
+    renderPosts(postsArray);
+    console.log(postsArray);
   });
 
 // It has to be the form, not the button
@@ -39,5 +40,12 @@ blogForm.addEventListener("submit", function (e) {
     body: JSON.stringify(input),
   })
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    // Data shows you what you just posted!
+    .then((data) => {
+      postsArray.unshift(data);
+      // console.log(postsArray);
+      renderPosts(postsArray);
+    });
+
+  blogForm.reset();
 });

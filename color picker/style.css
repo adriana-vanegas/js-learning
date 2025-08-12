@@ -1,0 +1,31 @@
+.main {
+  width: 40rem;
+  border: 1px gray solid;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.color-form {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.colors-scheme {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.output {
+  width: 100%;
+
+  justify-items: center;
+}
+
+.color {
+  border: 1px gray solid;
+  width: 100%;
+  height: 20rem;
+}

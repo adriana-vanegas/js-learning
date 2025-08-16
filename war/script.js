@@ -31,3 +31,7 @@ function filterArray(array, callback) {
 }
 
 console.log(filterArray(people, checkIfTrue));
+
+const filterList = people.filter((item) => item.hasPet);
+
+console.log(filterList);

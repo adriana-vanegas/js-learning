@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="data"></div>
+    <div class="name"></div>
+    <div class="petOwnerPortal"></div>
+    <script>
+      const data = document.querySelector(".data");
+      const name = document.querySelector(".name");
+      const petOwnerPortal = document.querySelector(".petOwnerPortal");
+
+      function getDataFromServer(callback) {
+        console.log("Fetching data...");
+
+        // Fake "server delay"
+        setTimeout(() => {
+          const data = { name: "Adriana", hasPet: true };
+          callback(data);
+        }, 2000);
+      }
+
+      getDataFromServer(logOutAll);
+      getDataFromServer(logOutName);
+      getDataFromServer(logOutHasPet);
+
+      function logOutAll(info) {
+        console.log(info);
+      }
+
+      function logOutName(info) {
+        name.innerHTML = `Welcome, ${info.name}`;
+      }
+
+      function logOutHasPet(info) {
+        if (info.hasPet) {
+          petOwnerPortal.innerHTML = "Pet Owner Portal";
+        }
+      }
+      // getDataFromServer((result) => {
+      //   console.log("Data received:", result);
+      // });
+    </script>
+  </body>
+</html>

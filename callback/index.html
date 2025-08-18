@@ -6,9 +6,11 @@
     <title>Document</title>
   </head>
   <body>
+    <div>Home</div>
     <div class="data"></div>
     <div class="name"></div>
     <div class="petOwnerPortal"></div>
+    <div>Close</div>
     <script>
       const data = document.querySelector(".data");
       const name = document.querySelector(".name");
@@ -22,28 +24,37 @@
           const data = { name: "Adriana", hasPet: true };
           callback(data);
         }, 2000);
+
+        console.log("Done soon");
       }
 
-      getDataFromServer(logOutAll);
-      getDataFromServer(logOutName);
-      getDataFromServer(logOutHasPet);
-
-      function logOutAll(info) {
-        console.log(info);
-      }
-
-      function logOutName(info) {
-        name.innerHTML = `Welcome, ${info.name}`;
-      }
-
-      function logOutHasPet(info) {
+      // getDataFromServer(logOutAll);
+      getDataFromServer((info) => console.log(info));
+      getDataFromServer((info) => (name.innerHTML = `Welcome, ${info.name}`));
+      getDataFromServer((info) => {
         if (info.hasPet) {
           petOwnerPortal.innerHTML = "Pet Owner Portal";
         }
-      }
+      });
+
+      // function logOutAll(info) {
+      //   console.log(info);
+      // }
+
+      // function logOutName(info) {
+      //   name.innerHTML = `Welcome, ${info.name}`;
+      // }
+
+      // function logOutHasPet(info) {
+      //   if (info.hasPet) {
+      //     petOwnerPortal.innerHTML = "Pet Owner Portal";
+      //   }
+      // }
       // getDataFromServer((result) => {
       //   console.log("Data received:", result);
       // });
+
+      // SECOND SECTION:
     </script>
   </body>
 </html>

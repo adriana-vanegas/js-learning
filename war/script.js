@@ -1,3 +1,4 @@
+// Logic
 const newDeck = document.getElementById("new-deck");
 const drawCards = document.getElementById("draw-card");
 const playSection = document.querySelector(".cards-to-play");

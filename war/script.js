@@ -3,6 +3,7 @@ const newDeck = document.getElementById("new-deck");
 const drawCards = document.getElementById("draw-card");
 const playSection = document.querySelector(".cards-to-play");
 const scoreSection = document.querySelector(".score");
+const deckImg = document.querySelector(".ace-img");
 let deckId = "";
 
 let player1Score = 0;
@@ -16,20 +17,34 @@ newDeck.addEventListener("click", function () {
       console.log(deckId);
       player1Score = 0;
       player2Score = 0;
+      playSection.innerHTML = `<div class="player">
+        Player 1
+        <div class="empty-cards"></div>
+      </div>
+      <div class="player">
+        Player 2
+        <div class="empty-cards"></div>
+      </div>`;
+      scoreSection.innerHTML = `<div class="scores">Player 1: 0, Player 2: 0</div>`;
+      deckImg.classList.remove("hidden");
     });
 });
 
 drawCards.addEventListener("click", function () {
-  fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
-    .then((response) => response.json())
-    .then((data) => {
-      playSection.innerHTML = "";
-      console.log(data.cards);
-      const card = data.cards.map((item) => {
-        return { image: item.image, value: item.value };
+  if (deckId) {
+    fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
+      .then((response) => response.json())
+      .then((data) => {
+        playSection.innerHTML = "";
+        console.log(data.cards);
+        const card = data.cards.map((item) => {
+          return { image: item.image, value: item.value };
+        });
+        score(card);
       });
-      score(card);
-    });
+  } else {
+    playSection.textContent = "Get a new deck";
+  }
 });
 
 function score(card) {
@@ -49,10 +64,12 @@ function score(card) {
   } else {
     const winner =
       player1Score > player2Score
-        ? "Player 1 wins!"
+        ? "Player 1 wins!🎉"
         : player1Score === player2Score
         ? "It's a tie"
-        : "Player 2 wins!";
+        : "Player 2 wins!🎉";
+
+    deckImg.classList.add("hidden");
 
     playSection.innerHTML += `
         <div class="winner-announcement">
@@ -69,9 +86,11 @@ function showCard(img, playerNum) {
 
   if (cardImage) {
     playSection.innerHTML += `
-      <div class="player-${playerNum}">
+      <div class="player">
         Player ${playerNum}
-        <img src="${cardImage}">
+        <div class="player-img">
+        <img class="card-img" src="${cardImage}">
+        </div>
       </div>`;
   }
 }

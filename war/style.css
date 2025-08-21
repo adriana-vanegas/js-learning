@@ -31,7 +31,7 @@ body {
   padding: 1rem;
 }
 
-#draw-card {
+.draw-card {
   padding: 1rem 3rem;
   background-color: rgb(231, 255, 143);
   border: none;

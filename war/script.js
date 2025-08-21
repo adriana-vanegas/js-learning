@@ -1,6 +1,6 @@
 // Logic
 const newDeck = document.getElementById("new-deck");
-const drawCards = document.getElementById("draw-card");
+const drawCards = document.querySelector(".draw-card");
 const playSection = document.querySelector(".cards-to-play");
 const scoreSection = document.querySelector(".score");
 const deckImg = document.querySelector(".ace-img");
@@ -27,6 +27,7 @@ newDeck.addEventListener("click", function () {
       </div>`;
       scoreSection.innerHTML = `<div class="scores">Player 1: 0, Player 2: 0</div>`;
       deckImg.classList.remove("hidden");
+      drawCards.classList.remove("hidden");
     });
 });
 
@@ -62,6 +63,7 @@ function score(card) {
       }
     });
   } else {
+    drawCards.classList.add("hidden");
     const winner =
       player1Score > player2Score
         ? "Player 1 wins!🎉"

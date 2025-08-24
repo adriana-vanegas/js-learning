@@ -54,12 +54,16 @@ async function weatherDisplay() {
     const weatherData = await resWeather.json();
     const kelvin = weatherData.main.temp;
     const fahrenheit = (kelvin - 273.15) * (9 / 5) + 32;
-    console.log(weatherData);
-    // weather.innerHTML = `
-    // <div class="weather">
-    //   <img src=>
-    // </div>
-    // `;
+    const icon = weatherData.weather[0].icon;
+    const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    console.log(icon);
+
+    weather.innerHTML = `
+    <div class="weather">
+      <img src="${iconURL}"> ${fahrenheit}°
+    </div>
+    <div class="city">${city}</div>
+    `;
   } catch (error) {
     console.log(error);
   }
